@@ -6,13 +6,19 @@ import Logica.Paciente;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class InformacionGUI extends javax.swing.JFrame {
 
     RegistroClinicoGUI abrir;
     static Consultorio consultorio1;
     static String cedulaUsar;
     Paciente paciente;
-
+    
+    /**
+    *Se crea una nueva ventana de información del paciente y muestra su información junto con su lista de citas.
+    *@param cedula Cédula del paciente a mostrar información.
+    *@param consultorio Consultorio en el que se buscará el paciente.
+    */
     public InformacionGUI(String cedula, Consultorio consultorio) {
         initComponents();
         consultorio1 = consultorio;
@@ -22,7 +28,11 @@ public class InformacionGUI extends javax.swing.JFrame {
         txaInformacion.setText(paciente.toString() + "\n" + paciente.listaCitas.mostrarCitas());
     }
 
-
+    /**
+    *Inicializa y configura los componentes de la interfaz gráfica de usuario de InformacionGUI.
+    *Se crea una etiqueta con el título "Información", un área de texto donde se muestra la información del paciente y sus citas, tres botones: "Regresar", "Añadir Cita" y "Actualizar".
+    *Se agregan escuchadores de eventos a los botones para realizar acciones al presionarlos.
+    */
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
@@ -72,20 +82,37 @@ public class InformacionGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+    *Método que se ejecuta cuando se presiona el botón "Regresar".
+    *Hace que la ventana actual se vuelva invisible.
+    *@param evt el evento de acción generado al presionar el botón
+    */
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {
         this.setVisible(false);
     }
 
+    /**
+    *Método que se ejecuta cuando se presiona el botón "Añadir Cita".
+    *Hace que la ventana actual se vuelva invisible.
+    *@param evt el evento de acción generado al presionar el botón
+    */
     private void btnAñadirCitaActionPerformed(java.awt.event.ActionEvent evt) {
         abrir.setVisible(true);
     }
 
+    /**
+    *Actualiza la información del paciente y muestra la lista de citas en el área de texto.
+    *@param evt evento de acción del botón actualizar
+    */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {
         paciente = consultorio1.buscar(cedulaUsar);
         txaInformacion.setText(paciente.toString() + "\n" + paciente.listaCitas.mostrarCitas());
     }
 
-
+    /**
+    *Método principal del programa que establece el Look and Feel Nimbus como aspecto visual de la interfaz y crea una nueva instancia de la clase InformacionGUI, estableciéndola como visible.
+    *@param args los argumentos de la línea de comandos
+    */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

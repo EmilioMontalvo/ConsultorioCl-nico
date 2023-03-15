@@ -14,7 +14,13 @@ public class Paciente extends Persona {
         this.cedulaActual = Long.parseLong(cedula);
         hijoDerecho = hijoIzquierdo = null;
     }
-
+    
+    /**
+    *Método que enlaza un nodo a un árbol de pacientes ordenado por la cédula del paciente. Si la cédula del paciente es menor a la cédula del nodo actual, 
+    *el paciente se inserta en el subárbol izquierdo. Si la cédula del paciente es mayor o igual a la cédula del nodo actual, el paciente se inserta en el 
+    *subárbol derecho.
+    *@param paciente el paciente a insertar en el árbol
+    */
     public void enlazarNodo(Paciente paciente) {
         long cedula = Long.parseLong(paciente.cedula);
         if (cedula < cedulaActual) {

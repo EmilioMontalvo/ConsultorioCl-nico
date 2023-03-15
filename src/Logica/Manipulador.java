@@ -13,11 +13,13 @@ public class Manipulador {
     private final String directorioActual = encontrarDirectorio();
     ;
     private static String[] partes;
-
+    
+    /**
+    *Método que genera un archivo CSV a partir de los datos de los pacientes del consultorio.
+    *@param clinica objeto Consultorio que contiene la lista de pacientes a exportar.
+    */
     public void generarCsv(Consultorio clinica) {
-
         try {
-
             lector = new BufferedReader((new FileReader(directorioActual)));
             while ((linea = lector.readLine()) != null) {
                 partes = linea.split(",");
@@ -31,6 +33,10 @@ public class Manipulador {
         }
     }
 
+    /**
+    *Método que llena un objeto Paciente con la información contenida en un archivo CSV y lo inserta en el árbol de pacientes de la clínica.
+    *@param clinica contiene el árbol de pacientes en el cual se insertará el nuevo paciente.
+    */
     public static void llenarPaciente(Consultorio clinica) {
         String cedulaStringCsv = partes[0];
         String nombreCsv = partes[1];
@@ -45,7 +51,11 @@ public class Manipulador {
         System.out.println(paciente); //Borrar
         clinica.arbolPacientes.insertarNodo(paciente);
     }
-
+    
+    /**
+    *Mpetodo que guarda la información de un paciente en un archivo CSV.
+    *@param paciente el paciente a guardar.
+    */
     public void guardarPaciente(Paciente paciente) {
         try {
             infoPaciente = "";
@@ -66,7 +76,11 @@ public class Manipulador {
         }
 
     }
-
+    
+    /**
+    *Método que devuelve la ruta del archivo registros.csv dentro del directorio actual del programa.
+    *@return la ruta del archivo registros.csv.
+    */
     public static String encontrarDirectorio() {
         Path currentPath = Paths.get(System.getProperty("user.dir"));
         Path filePath = Paths.get(currentPath.toString(), "registros.csv");

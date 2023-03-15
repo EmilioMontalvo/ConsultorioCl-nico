@@ -10,7 +10,12 @@ public class PrincipalGUI extends javax.swing.JFrame {
     RegistrarGUI registrarAbrir;
     boolean cedulaCorrecta;
     String cedula;
-
+    
+    /**
+    *Constructor de la clase PrincipalGUI. Inicializa los componentes de la interfaz gráfica,
+    *crea una instancia del objeto Consultorio y lo llena con registros predefinidos,
+    *crea una instancia del objeto RegistrarGUI y establece la variable cedulaCorrecta en false.
+    */
     public PrincipalGUI() {
         initComponents();
         consultorio = new Consultorio();
@@ -18,7 +23,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         registrarAbrir = new RegistrarGUI();
         cedulaCorrecta = false;
     }
-
+    
+    /**
+    *Representa la interfaz gráfica de usuario principal del programa,
+    *que permite al usuario buscar o registrar pacientes en el consultorio a través de su cédula.
+    */
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -66,6 +75,13 @@ public class PrincipalGUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    /**
+    *Acción que se realiza al presionar el botón "Buscar". Obtiene la cédula ingresada por el usuario y verifica que sea válida.
+    *En caso de ser válida, verifica si el paciente está registrado en el consultorio.
+    *Si el paciente está registrado, abre la ventana de información del paciente.
+    *Si el paciente no está registrado, habilita el botón para registrar al paciente.
+    *@param evt Evento generado al presionar el botón "Buscar".
+    */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {
         cedula = txtCedula.getText();
         cedulaCorrecta = cedula.matches("\\d{10}");
@@ -84,6 +100,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         }
     }
 
+    /**
+    +Realiza la acción al presionar el botón "REGISTRAR".
+    *Obtiene la cédula ingresada en el campo de texto "txtCedula", crea una instancia de RegistrarGUI y la hace visible.
+    *@param evt El evento de acción generado por el botón "REGISTRAR".
+    */
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
         cedula = txtCedula.getText();
         registrarAbrir = new RegistrarGUI(consultorio, cedula);
@@ -91,6 +112,11 @@ public class PrincipalGUI extends javax.swing.JFrame {
         registrarAbrir.setVisible(true);
     }
 
+    /**
+    *Clase principal del programa que inicializa la interfaz gráfica de usuario
+    *y establece el estilo "Nimbus" para la apariencia de la interfaz.
+    *@param args los argumentos de la línea de comandos.
+    */
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
